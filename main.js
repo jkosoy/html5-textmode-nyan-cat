@@ -118,8 +118,6 @@ function mainLoop() {
     printCatBody(19+bodyCos,5+bodySin);
     printCatHead(42+headCos,8+headSin);
 
-
-
     // Shadow an area of the screen, draw an outlined box and write some text in it
     screenManager.processBox(screenManager.charsWide-23, 21, 22, 3, function(charId, colourId) { return [charId, colourId & 0x77]; });
     screenManager.printBox(screenManager.charsWide-23, 21, 22, 3, 0x7f);
@@ -141,15 +139,15 @@ function printCatBody(x,y) {
      screenManager.printBox(x+2, y+2, 24, 8, 0xdd);
 
      var spots = [
-        [x+20,y+4],
-        [x+10,y+3],
-        [x+3,y+4],
-        [x+11,y+9],
-        [x+16,y+7],
-        [x+6,y+7],
-        [x+3,y+9],
-        [x+12,y+5],
-        [x+20,y+9],
+        [x+20,y+3],
+        [x+12,y+4],
+        [x+3,y+3],
+        [x+11,y+8],
+        [x+16,y+6],
+        [x+6,y+6],
+        [x+3,y+8],
+        [x+12,y+4],
+        [x+20,y+8],
      ]
 
      for(var i=0;i<spots.length;i++) {
