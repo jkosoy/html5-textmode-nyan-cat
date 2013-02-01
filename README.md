@@ -11,6 +11,7 @@ More on Text mode can be found at [Wikipedia](http://en.wikipedia.org/wiki/Text_
 #FAQ
 
 *Did you listen to this music the whole time you made this?*
+
 No. I muted my laptop exactly 1 second after I got the MP3.
 
 ...Okay maybe a few times.
