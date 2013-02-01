@@ -100,9 +100,23 @@ function mainLoop() {
         }
     }
 
-    printCatBody(19+ Math.round(Math.cos(now/100) - 0.25),3 + Math.round(Math.sin(now/100) - 0.25));
-    printCatHead(42 + Math.round(Math.cos(now/100) - 0.5),7 + Math.round(Math.sin(now/100) - 0.5));
 
+    var legCos = Math.round(Math.cos(now/100) - 0.25);
+    var legSin = Math.round(Math.sin(now/100) - 0.25);
+
+    var bodyCos = Math.round(Math.cos(now/100) - 0.25);
+    var bodySin = Math.round(Math.sin(now/100) - 0.25);
+
+    var headCos = Math.round(Math.cos(now/100) - 0.5);
+    var headSin =  Math.round(Math.sin(now/100) - 0.5);
+
+    printLeg(42+legCos,16+legSin);
+    printLeg(34+legCos,16+legSin);
+    printLeg(26+legCos,16+legSin);
+    printLeg(20+legCos,16+legSin);
+    printTail(12+bodyCos,11+bodySin);
+    printCatBody(19+bodyCos,5+bodySin);
+    printCatHead(42+headCos,8+headSin);
 
 
 
@@ -116,9 +130,15 @@ function mainLoop() {
 }
 
 function printCatBody(x,y) {
-     screenManager.printBox(x, y, 28, 13, 0x00);
-     screenManager.printBox(x+1, y+1, 26, 11, 0x77);
-     screenManager.printBox(x+2, y+2, 24, 9, 0xdd);
+     screenManager.printBox(x+1, y, 26, 1, 0x00);
+     screenManager.printBox(x, y+1, 28, 10, 0x00);
+     screenManager.printBox(x+1, y+11, 26, 1, 0x00);
+
+
+     screenManager.printBox(x+1, y+1, 26, 10, 0x77);
+
+
+     screenManager.printBox(x+2, y+2, 24, 8, 0xdd);
 
      var spots = [
         [x+20,y+4],
@@ -140,8 +160,23 @@ function printCatBody(x,y) {
         screenManager.charBuffer[index] = Math.random() * 255;
         screenManager.colourBuffer[index] = 0xdc;
      }
+}
 
+function printTail(x,y) {
+    var destination = x+7;
+    var tip = x;
+    var now = new Date().getTime();
+    for (x;x<destination;x++) {
+        var offset = -Math.round(Math.sin((x / 3) + now/80));
 
+        for(var i=0;i<4;i++) {
+            var dy = y+i;
+            var index = ((dy+offset)*screenManager.charsWide)+x;
+            if(i >0 && i<3 && x!=tip) screenManager.colourBuffer[index] = 0x77;
+            else screenManager.colourBuffer[index] = 0x00;
+         }
+
+    }
 }
 
 // x,y is the cat's top left ear.
@@ -149,6 +184,11 @@ function printCatHead(x,y) {
     printEar(x,y);
     printEar(x+11,y);
     printFace(x-2,y+2);
+}
+
+function printLeg(x,y) {
+    screenManager.printBox(x, y, 5, 3, 0x00);
+    screenManager.printBox(x+1, y, 3, 2, 0x77);        
 }
 
 function printFace(x,y) {
