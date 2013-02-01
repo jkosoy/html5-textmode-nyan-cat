@@ -21,7 +21,7 @@ var text = "Nyan Nyan Nyan Nyan ";
 
 function init() {
     // Initialise the textmode library
-    screenManager = new TextModeScreen(40, 25, "mainCanvas", sourceFont);
+    screenManager = new TextModeScreen(60, 25, "mainCanvas", sourceFont);
     
     // Call our main loop at 25fps
     setInterval(mainLoop, 1000 / 25);
@@ -100,8 +100,8 @@ function mainLoop() {
         }
     }
 
-    printCatBody(0,0);
-    printCatHead(22 + Math.round(Math.cos(now/100) - 0.5),8 + Math.round(Math.sin(now/100) - 0.5));
+    printCatBody(19+ Math.round(Math.cos(now/100) - 0.25),3 + Math.round(Math.sin(now/100) - 0.25));
+    printCatHead(42 + Math.round(Math.cos(now/100) - 0.5),7 + Math.round(Math.sin(now/100) - 0.5));
 
 
 
@@ -116,7 +116,32 @@ function mainLoop() {
 }
 
 function printCatBody(x,y) {
-    
+     screenManager.printBox(x, y, 28, 13, 0x00);
+     screenManager.printBox(x+1, y+1, 26, 11, 0x77);
+     screenManager.printBox(x+2, y+2, 24, 9, 0xdd);
+
+     var spots = [
+        [x+20,y+4],
+        [x+10,y+3],
+        [x+3,y+4],
+        [x+11,y+9],
+        [x+16,y+7],
+        [x+6,y+7],
+        [x+3,y+9],
+        [x+12,y+5],
+        [x+20,y+9],
+     ]
+
+     for(var i=0;i<spots.length;i++) {
+        var spotX = spots[i][0];
+        var spotY = spots[i][1];
+
+        var index = (spotY*screenManager.charsWide)+spotX;
+        screenManager.charBuffer[index] = Math.random() * 255;
+        screenManager.colourBuffer[index] = 0xdc;
+     }
+
+
 }
 
 // x,y is the cat's top left ear.
