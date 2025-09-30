@@ -12,11 +12,21 @@
         <canvas id="mainCanvas" width="0" height="0"></canvas>
 
         <!-- Audio :: http://www.youtube.com/watch?v=fw7mE2tF9Ck -->
-        <audio autoplay loop src="./nyan.mp3">
+        <audio id="audio" autoplay loop src="./nyan.mp3">
             <source src="/nyan.mp3" type="audio/mpeg">
         </audio>
+        <script>
+          window.onload = function() {
+            document.querySelector('#audio').play();
+          };
+            window.addEventListener("click", () => {
+                document.querySelector('#audio').play();
+
+            });
+        </script>
     </body>
 </html>
+
 
 
 
