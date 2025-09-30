@@ -17,15 +17,20 @@
             <source src="/nyan.mp3" type="audio/mpeg">
         </audio>
         <script>
-            const handleClick = () => {
-                document.querySelector('#audio').play();
-                window.removeEventListener("click", handleClick);
-            }
+            let isPlaying = false;
 
-            window.addEventListener("click", handleClick);
+            window.addEventListener("click", () => {
+                if(isPlaying) {
+                    return;
+                }
+
+                isPlaying = true;
+                document.querySelector('#audio').play();
+            });
         </script>
     </body>
 </html>
+
 
 
 
